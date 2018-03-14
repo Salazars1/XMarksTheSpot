@@ -13,5 +13,4 @@ class Floor(models.Model):
 
 class Room(models.Model):
     floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
-    building = floor.building
     name = models.IntegerField(default=0)
