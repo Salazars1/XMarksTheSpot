@@ -3,7 +3,7 @@
 <title>X Create Account</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,6 +11,7 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Arial", Serif}
 .w3-bar,h1,button {font-family: "Arial", serif}
+form{width:50%; min-height:500px;}
 
 </style>
 
@@ -23,7 +24,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Arial", Serif}
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="Homepage.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a href="Login.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Login</a>
-    <a href="" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    <a href="Homepage.html#about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
     <a href="Buildings.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Buildings</a>
     <a href="Available.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Available Now</a>
   </div>
@@ -36,6 +37,41 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Arial", Serif}
     <a href="Available.html" class="w3-bar-item w3-button w3-padding-large">Available Now</a>
   </div>
 </div>
+<hr>
+<div class="w3-row-padding w3-padding-64 w3-container">
+<form class="w3-container w3-card-4 w3-display-middle" id="login">
+
+  <h2>Create Account</h2>
+  <p>
+    <label>First Name</label>
+    <input class="w3-input w3-border w3-round-xxlarge" name="first" type="text">
+  </p>
+  <p>
+    <label>Last Name</label>
+    <input class="w3-input w3-border w3-round-xxlarge" name="last" type="text">
+  </p>
+  <p>
+    <label>Xavier Email</label>
+    <input class="w3-input w3-border w3-round-xxlarge" name="email" type="text">  
+  </p>
+
+  <button class="w3-button w3-blue w3-display-bottomright w3-margin w3-round-xxxlarge">Submit</button>
+</form>
+
+<!-- Footer -->
+<div class="w3-container w3-padding-64 w3-margin w3-display-bottommiddle w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</div>
+</div>
+
 
 </body>
 </html>
