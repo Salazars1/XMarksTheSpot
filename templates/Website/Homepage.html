@@ -5,13 +5,13 @@
 
 
 -->
-
+{% load static %}
 <!DOCTYPE html>
 <html>
 <title>X Marks the Spot</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="w3.css">
+<link rel="stylesheet" href="{% static "Website/w3.css" %}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,7 +49,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Arial", Serif}
 <header class="w3-container w3-blue w3-center" style="padding:128px 16px">
   <h1 class="w3-margin w3-jumbo">X Marks the Spot</h1>
   <p class="w3-xlarge">Iteration 2</p>
-  <a href="CreateAccount.html" class="w3-button w3-white w3-padding-large w3-large w3-margin-top" >Create an Account</a>
+  <a href="/login/create-account/" class="w3-button w3-white w3-padding-large w3-large w3-margin-top" >Create an Account</a>
 </header>
 
 <!-- About Container -->
