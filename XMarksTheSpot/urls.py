@@ -22,5 +22,7 @@ urlpatterns = [
     path('', lambda x: redirect('login/')),
     path('login/', include('login.urls')),
     path('buildings/', include('buildings.urls')),
+    path('home/', include('home.urls')),
+    path('about/', include('about.urls')),
     path('admin/', admin.site.urls),
 ]

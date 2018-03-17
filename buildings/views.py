@@ -5,6 +5,7 @@ from django.http import HttpResponse
 def index(request):
     context = {}
     return render(request, 'buildings/index.html')
+
 def floors(request):
     return HttpResponse('This is the floors page.')
 
