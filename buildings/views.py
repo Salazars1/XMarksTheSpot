@@ -4,7 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     context = {}
-    return render(request, 'buildings/index.html')
+    return render(request, 'Website/Buildings.html')
 
 def floors(request):
     return HttpResponse('This is the floors page.')
