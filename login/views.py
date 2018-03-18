@@ -9,7 +9,3 @@ def index(request):
 def createAccount(request):
     return render(request, 'Website/CreateAccount.html')
 
-#def login(request, username, password):
- #   user = db.get(username)
-  #  if user.password == password:
-   #     return redirect('login/')
