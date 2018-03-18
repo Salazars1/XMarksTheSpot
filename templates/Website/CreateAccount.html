@@ -3,22 +3,11 @@
 {% block content %}
 <hr>
 <div class="w3-row-padding w3-padding-64 w3-container">
-<form class="w3-container w3-card-4 w3-display-middle" id="login">
+<form class="w3-container w3-card-4 w3-display-middle" id="login" method = "post">
 
   <h2>Create Account</h2>
-  <p>
-    <label>First Name</label>
-    <input class="w3-input w3-border w3-round-xxlarge" name="first" type="text">
-  </p>
-  <p>
-    <label>Last Name</label>
-    <input class="w3-input w3-border w3-round-xxlarge" name="last" type="text">
-  </p>
-  <p>
-    <label>Xavier Email</label>
-    <input class="w3-input w3-border w3-round-xxlarge" name="email" type="text">  
-  </p>
-
-  <button class="w3-button w3-blue w3-display-bottomright w3-margin w3-round-xxxlarge">Submit</button>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="w3-button w3-blue w3-display-bottomright w3-margin w3-round-xxxlarge" type = "submit">Submit</button>
 </form>
 {% endblock %}
