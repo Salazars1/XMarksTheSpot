@@ -22,8 +22,5 @@ class Room(models.Model):
     name = models.IntegerField(default=0)
     def __str__(self):
         buildingName = self.floor.building.name
-        floorName = str(self.floor.name)
-        roomName = floorName + str(self.name)
-        if self.name < 10:
-            roomName = floorName + str(0) + str(self.name)
+        roomName = str(self.name)
         return buildingName + " " + roomName
