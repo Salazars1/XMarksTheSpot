@@ -1,11 +1,11 @@
 {% extends 'Website/base.html' %}
+{% block content %}
 <div class="w3-row-padding w3-padding-64 w3-container">
 <hr>
-{% block content %}
 <h1>{{ building.name }}</h1>
 <ul>
 {% for floor in building.floor_set.all %}
-    <li>{{ floor.name }}</li>
+    <li><a href="/buildings/{{ building.name }}/{{ floor.name }}">{{ floor.name }}</li>
 {% endfor %}
 </ul>
 {% endblock %}
