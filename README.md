@@ -22,7 +22,7 @@ mySQL - use online directions from https://www.mysql.com/downloads/
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+A step by step series of examples that tell you how to get a development env running
 
 Clone repo on desired file:
 ```
@@ -31,7 +31,7 @@ $ git clone https://github.com/nelsona11/XMarksTheSpot.git
 
 In file directory of XMarksTheSpot after repository has been cloned:
 
-  First, update settings.py and firstCleanDatabase.py file to access your MySQL using your mySQL account information.
+  First, update settings.py and firstCleanDatabase.py file in XMarksTheSpot file to access your MySQL using your mySQL account information.
 
   In terminal:
 ```
@@ -64,31 +64,19 @@ Lastly, to run server locally do the following.
 $ python manage.py runserver
 ```
 
-######FINISHED HERE 3/19/18 continue here
+## Iteration 1 Function Tests
 
-## Running the tests
+Use link displayed in terminal to see website.
 
-Explain how to run the automated tests for this system
 
-### Break down into end to end tests
+Create accounts.
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+Login to accounts.
 
-### And coding style tests
 
-Explain what these tests test and why
+See user accounts by accessing the /admin page logging in as admin user creates with setup.py was ran.
 
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
