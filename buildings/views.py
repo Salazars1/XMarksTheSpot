@@ -12,7 +12,9 @@ def detail(request, building_id):
     return HttpResponse("You're looking at building %s." % building_id)
 
 def floors(request):
-    return HttpResponse('This is the floors page.')
+    context = {}
+    return render(request, 'Website/Floors.html')
 
 def rooms(request):
-    return HttpResponse('This is the rooms page.')
+    context = {}
+    return render(request, 'Website/Rooms.html')
