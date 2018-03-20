@@ -1,24 +1,25 @@
 # XMarksTheSpot
 
-The focus of this project is to design a tool that allows Xavier students to reserve study rooms in all buildings on campus. 
-Greater efficiency in scheduling and reserving study rooms should give Xavier students more control over studying and 
-organizing group projects. Further, we expect this tool to more efficiently distribute study rooms during high-demand 
-times during the semester. The tool will be platform independent to allow universal access for all students and will 
-consist of a website. 
+The focus of this project is to design a tool that allows Xavier students to reserve study rooms in all buildings on campus.
+Greater efficiency in scheduling and reserving study rooms should give Xavier students more control over studying and
+organizing group projects. Further, we expect this tool to more efficiently distribute study rooms during high-demand
+times during the semester. The tool will be platform independent to allow universal access for all students and will
+consist of a website.
 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
 What things you need to install the software:
 
-Django - use online directions from reliable sources that best fits your system and downloading files from https://www.mysql.com/downloads/
+Django - use online directions from reliable sources that best fits your system and downloading files from
+https://www.djangoproject.com/download/
 
-mySQL - use online directions from https://www.djangoproject.com/download/
+mySQL - use online directions from https://www.mysql.com/downloads/
 
 ### Installing
 
@@ -40,7 +41,7 @@ $ open settings.py
 ```
   Once opened, edit lines 86-87 where USER and PASSWORD fields are your own.
   Save.
-  
+
   Next, in terminal:
 ```
 $ cd ..
@@ -48,13 +49,13 @@ $ open firstCleanDatabase.py
 ```
   Once opened, edit line 5 where host, user, passwd are your own.
   Save.
-  
+
   Next, we need to create a fresh Database called DBXMarksTheSpot.
   In terminal:
 ```
 $ python firstCleanDatabase.py
 ```
- 
+
  Next, we need to migrate Django and Database.
   In terminal:
 ```
@@ -108,7 +109,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/) for details on our code 
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
