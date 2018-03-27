@@ -1,1 +1,14 @@
 {% extends 'Website/base.html' %}
+{% block content %}
+<div class="w3-row-padding w3-padding-64 w3-container">
+<hr>
+{% if room_list %}
+    <ul>
+    {% for room in room_list %}
+        <li>{{ room.floor.building.name }} {{ room.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No rooms are available.</p>
+{% endif %}
+{% endblock %}
