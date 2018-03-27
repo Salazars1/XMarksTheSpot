@@ -1,10 +1,9 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Building(models.Model):
     name = models.CharField(max_length=50)
-
     def __str__(self):
         return self.name
 
@@ -23,4 +22,13 @@ class Room(models.Model):
     def __str__(self):
         buildingName = self.floor.building.name
         roomName = str(self.name)
+        if self.floor.name == 0:
+            return buildingName + " 00" + roomName
         return buildingName + " " + roomName
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    time = models.DateTimeField("reserved time")
+    def __str__(self):
+        return str(self.room) + " " + str(self.time)
