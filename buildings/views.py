@@ -23,3 +23,12 @@ def rooms(request, building_name, floor_name):
     except Floor.DoesNotExist:
         raise Http404("Floor does not exist")
     return render(request, 'Website/Rooms.html', {'floor': floor})
+
+def displayRoom(request, building_name, floor_name, room):
+    try:
+        b = Building.objects.get(name = building_name)
+        f = Floor.objects.get(name = floor_name, building = b)
+        room = Room.objects.get(name = room, floor = f)
+    except Room.DoesNotExist:
+        raise Http404("Room does not exist")
+    return render(request, 'Website/displayRoom.html', {'room': room})

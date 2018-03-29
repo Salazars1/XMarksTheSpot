@@ -5,7 +5,8 @@
 <h1>{{ floor.building.name }}  {{ floor.name }}</h1>
 <ul>
 {% for room in floor.room_set.all %}
-    <li>{{ room.name }}</li>
+
+    <li><a href="/buildings/{{ floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.name }}</li>
 {% endfor %}
 </ul>
 {% endblock %}

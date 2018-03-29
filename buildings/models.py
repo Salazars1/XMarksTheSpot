@@ -19,6 +19,18 @@ class Floor(models.Model):
 class Room(models.Model):
     floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
     name = models.IntegerField(default=0)
+    calendar = [["Monday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
+                ["Tuesday",   False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
+                ["Wednesday", False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
+                ["Thursday",  False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
+                ["Friday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
+                ["Saturday",  False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
+                ["Sunday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]]
+    def timeReserved(self, day, time):
+        if self.calendar[day][time] == False:
+            self.calendar[day][time] = True
+            return True
+        return False
     def __str__(self):
         buildingName = self.floor.building.name
         roomName = str(self.name)
@@ -32,3 +44,5 @@ class Reservation(models.Model):
     time = models.DateTimeField("reserved time")
     def __str__(self):
         return str(self.room) + " " + str(self.time)
+
+
