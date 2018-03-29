@@ -5,24 +5,26 @@ from django.http import Http404
 
 # Create your views here.
 def index(request):
-    building_list = Building.objects.all()
+    building_list = Building.objects.order_by('name')
     context = {'building_list' : building_list}
     return render(request, 'Website/Buildings.html', context)
 
 def floors(request, building_name):
     try:
         building = Building.objects.get(name = building_name)
+        floor_list = building.floor_set.order_by('name')
     except Building.DoesNotExist:
         raise Http404("Building does not exist")
-    return render(request, 'Website/Floors.html', {'building': building})
+    return render(request, 'Website/Floors.html', {'building': building, 'floor_list' : floor_list})
 
 def rooms(request, building_name, floor_name):
     try:
         b = Building.objects.get(name = building_name)
         floor = Floor.objects.get(name = floor_name, building = b)
+        room_list = floor.room_set.order_by('name')
     except Floor.DoesNotExist:
         raise Http404("Floor does not exist")
-    return render(request, 'Website/Rooms.html', {'floor': floor})
+    return render(request, 'Website/Rooms.html', {'floor': floor, 'room_list' : room_list})
 
 def displayRoom(request, building_name, floor_name, room):
     try:

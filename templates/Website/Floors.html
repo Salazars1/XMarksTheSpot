@@ -4,7 +4,7 @@
 <hr>
 <h1>{{ building.name }}</h1>
 <ul>
-{% for floor in building.floor_set.all %}
+{% for floor in floor_list %}
     <li><a href="/buildings/{{ building.name }}/{{ floor.name }}">{{ floor.name }}</li>
 {% endfor %}
 </ul>
