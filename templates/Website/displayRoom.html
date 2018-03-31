@@ -14,7 +14,7 @@
 <form action="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}" method="post">
 <p>
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <input type="submit" value="OK">
 </form>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Building, Floor, Room
+from .models import Building, Floor, Room, Reservation
 from django.http import Http404
 from .forms import ReservationForm
 
@@ -35,7 +35,13 @@ def displayRoom(request, building_name, floor_name, room):
         if request.method == 'POST':
             form = ReservationForm(request.POST)
             if form.is_valid():
-                return HttpResponse('success')
+                day = form.cleaned_data.get('day')
+                time = form.cleaned_data.get('timeInt')
+                if form.dayToInt(day) != -1:
+                    if not room.calendar[form.dayToInt(day)][time]:
+                        room.calendar[form.dayToInt(day)][time] = True
+                        Reservation(user = request.user, room = room, time = time, day = day)
+                        return HttpResponse('success')
         else:
             form = ReservationForm()
     except Room.DoesNotExist:

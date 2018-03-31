@@ -26,11 +26,6 @@ class Room(models.Model):
                 ["Friday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
                 ["Saturday",  False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
                 ["Sunday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]]
-    def timeReserved(self, day, time):
-        if self.calendar[day][time] == False:
-            self.calendar[day][time] = True
-            return True
-        return False
     def __str__(self):
         buildingName = self.floor.building.name
         roomName = str(self.name)
