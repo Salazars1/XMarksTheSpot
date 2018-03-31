@@ -9,6 +9,13 @@
     {% endif %}
     </ul>
 {% else %}
-    <p>No buildings are available.</p>
+    <p>Room isn't available.</p>
 {% endif %}
+<form action="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}" method="post">
+<p>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="OK">
+</form>
 {% endblock %}
+</div>

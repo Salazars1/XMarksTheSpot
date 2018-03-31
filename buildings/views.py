@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Building, Floor, Room
 from django.http import Http404
+from .forms import ReservationForm
 
 # Create your views here.
 def index(request):
@@ -31,6 +32,13 @@ def displayRoom(request, building_name, floor_name, room):
         b = Building.objects.get(name = building_name)
         f = Floor.objects.get(name = floor_name, building = b)
         room = Room.objects.get(name = room, floor = f)
+        if request.method == 'POST':
+            form = ReservationForm(request.POST)
+            if form.is_valid():
+                return HttpResponse('success')
+        else:
+            form = ReservationForm()
     except Room.DoesNotExist:
         raise Http404("Room does not exist")
-    return render(request, 'Website/displayRoom.html', {'room': room})
+    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form})
+

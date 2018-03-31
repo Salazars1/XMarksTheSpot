@@ -41,8 +41,9 @@ class Room(models.Model):
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    time = models.DateTimeField("reserved time")
+    time = models.IntegerField(default=0)
+    day = models.CharField(max_length=9)
     def __str__(self):
-        return str(self.room) + " " + str(self.time)
+        return str(self.room) + " " + self.day + " " + str(self.time)
 
 
