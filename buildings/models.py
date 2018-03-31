@@ -34,10 +34,10 @@ class Room(models.Model):
         return buildingName + " " + roomName
 
 class Reservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
     time = models.IntegerField(default=0)
     day = models.CharField(max_length=9)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.room) + " " + self.day + " " + str(self.time)
 

@@ -35,13 +35,13 @@ def displayRoom(request, building_name, floor_name, room):
         if request.method == 'POST':
             form = ReservationForm(request.POST)
             if form.is_valid():
-                day = form.cleaned_data.get('day')
+                dayReserved = form.cleaned_data.get('day')
                 time = form.cleaned_data.get('timeInt')
-                if form.dayToInt(day) != -1:
-                    if not room.calendar[form.dayToInt(day)][time]:
-                        room.calendar[form.dayToInt(day)][time] = True
+                if form.dayToInt(dayReserved) != -1:
+                    if not room.calendar[form.dayToInt(dayReserved)][time]:
+                        room.calendar[form.dayToInt(dayReserved)][time] = True
                         room.save()
-                        r = Reservation(user = request.user, room = room, time = time, day = day)
+                        r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
                         r.save()
                         return HttpResponse('success')
         else:
