@@ -2,7 +2,8 @@ from django import forms
 
 class ReservationForm(forms.Form):
     day = forms.CharField(label='Day', max_length=9)
-    timeInt = forms.IntegerField(label='Time', max_value=23)
+    timeInt = forms.IntegerField(label='Time', max_value=12)
+    timeType = forms.CharField(label = 'am/pm', max_length=2)
     def dayToInt(self, day):
         if day == "Monday":
             return 0
@@ -19,3 +20,12 @@ class ReservationForm(forms.Form):
         elif day == "Sunday":
             return 6
         return -1
+
+    def timeWithTimeType(self, timeType, timeInt):
+        if timeType == 'pm':
+            return 1
+        if timeType == 'am':
+            return 1
+        return -1
+
+
