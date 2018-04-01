@@ -40,5 +40,3 @@ class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.room) + " " + self.day + " " + str(self.time)
-
-
