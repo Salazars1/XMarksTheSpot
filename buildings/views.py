@@ -53,6 +53,8 @@ def displayRoom(request, building_name, floor_name, room):
                                 r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
                                 r.save()
                                 return HttpResponse('success')
+                            else:
+                                return HttpResponse('room taken')
         else:
             form = ReservationForm()
     except Room.DoesNotExist:
