@@ -26,6 +26,7 @@ class Room(models.Model):
                 ["Friday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
                 ["Saturday",  False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False],
                 ["Sunday",    False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]]
+    testField = models.BooleanField(default = False)
     def __str__(self):
         buildingName = self.floor.building.name
         roomName = str(self.name)
