@@ -32,21 +32,3 @@ class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     def __str__(self):
         return str(self.room) + " " + self.day + " " + str(self.time)
-
-class NewCalender(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    def __str__(self):
-        return str(self.room.name) + "Calendar"
-
-class CalendarDay(models.Model):
-    calendar = models.ForeignKey(NewCalender, on_delete=models.CASCADE)
-    name = models.CharField(max_length=9)
-    def __str__(self):
-        return str(self.calendar) + " " + self.name
-
-class CalendarTime(models.Model):
-    day = models.ForeignKey(CalendarDay, on_delete=models.CASCADE)
-    timeInt = models.IntegerField(default = 0)
-    available = models.BooleanField(default=False)
-    def __str__(self):
-        return str(self.day) + " " + str(self.timeInt) + " " + str(self.available)
