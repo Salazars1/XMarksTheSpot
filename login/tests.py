@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.test import Client
 
 # Create your tests here.
 class LogInTest(TestCase):
@@ -13,3 +14,7 @@ class LogInTest(TestCase):
         response = self.client.post('/login/', self.credentials, follow=True)
         # should be logged in now
         self.assertTrue(response.context['user'].is_active)
+    def test_LoginPage(self):
+        c = Client()
+        response = c.post('/login/', {'username': 'testuser', 'password': 'secret'})
+        self.assertEqual(response.status_code, 302)
