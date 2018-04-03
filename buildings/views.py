@@ -47,11 +47,17 @@ def displayRoom(request, building_name, floor_name, room):
                             if time == 12:
                                 time += 12
                         if form.dayToInt(dayReserved) != -1:
-                            r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
-                            r.save()
-                            return HttpResponse('success')
-                        else:
-                            return HttpResponse('room taken')
+                            reservation_list = Reservation.objects.filter(day = dayReserved)
+                            available = True
+                            for reservation in reservation_list:
+                                if reservation.time == time:
+                                    available = False
+                            if available:
+                                r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
+                                r.save()
+                                return HttpResponse('success')
+                            else:
+                                return HttpResponse('room taken')
         else:
             form = ReservationForm()
     except Room.DoesNotExist:
