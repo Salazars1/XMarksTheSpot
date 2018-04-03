@@ -51,6 +51,7 @@ def displayRoom(request, building_name, floor_name, room):
                                 room.calendar[form.dayToInt(dayReserved)][time] = True
                                 r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
                                 r.save()
+                                room.save()
                                 return HttpResponse('success')
                             else:
                                 return HttpResponse('room taken')
