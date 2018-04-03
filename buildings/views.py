@@ -47,7 +47,7 @@ def displayRoom(request, building_name, floor_name, room):
                             if time == 12:
                                 time += 12
                         if form.dayToInt(dayReserved) != -1:
-                            reservation_list = Reservation.objects.filter(day = dayReserved)
+                            reservation_list = Reservation.objects.filter(day = dayReserved, room = room)
                             available = True
                             for reservation in reservation_list:
                                 if reservation.time == time:
