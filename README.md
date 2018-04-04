@@ -97,32 +97,27 @@ After these have been created, you can view the site again and they should be pr
 
 In addition, after you are logged in, you can make hourly reservations. This is done via 2 ways.
 
+  Via the /buildings page.
 
-    Via the /buildings page.
-
-        They can select the desired building that will lead to selecting the desired floor of that building. Secondly, it will lead to selecting the desired room in that floor.
-        Once the room is select, the reservation page should appear.
-        Here, you can reserve in the following format:
+    They can select the desired building that will lead to selecting the desired floor of that building. Secondly, it will lead to selecting the desired room in that floor.
+    Once the room is select, the reservation page should appear.
+    Here, you can reserve in the following format:
                 Monday
                 6
                 pm
 
+    Once information is submitted, a message will appear that it was successful or that a the room has already been reserved.
 
-        Once information is submitted, a message will appear that it was successful or that a the room has already been reserved.
+  Via the /available page.
 
+    They can select the desired building's room.
+    Once the room is select, the reservation page should appear.
+    Here, you can reserve in the following format:
+                Monday
+                6
+                pm
 
-    Via the /available page.
-
-            They can select the desired building's room.
-            Once the room is select, the reservation page should appear.
-            Here, you can reserve in the following format:
-                    Monday
-                    6
-                    pm
-
-
-            Once information is submitted, a message will appear that it was successful or that a the room has already been reserved.  
-
+    Once information is submitted, a message will appear that it was successful or that a the room has already been reserved.
 
 In addition, /available page should only display rooms that are not reserve at the current time.
 This can be checked by making a reservation for the current hour and seeing that it is not displayed in the /available page anymore.
