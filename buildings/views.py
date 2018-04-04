@@ -31,7 +31,8 @@ def rooms(request, building_name, floor_name):
 def displayRoom(request, building_name, floor_name, room):
     response = ''
     if not request.user.username:
-        raise Http404("Temporary until I figure out redirect but must be logged in to view rooms")
+        response = 'Must be logged in to view rooms.'
+        return redirect('login')
     try:
         b = Building.objects.get(name = building_name)
         f = Floor.objects.get(name = floor_name, building = b)
