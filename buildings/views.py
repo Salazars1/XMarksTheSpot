@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Building, Floor, Room, Reservation
 from django.http import Http404
 from .forms import ReservationForm
+from django.shortcuts import redirect
 
 # Create your views here.
 def index(request):
@@ -29,6 +30,8 @@ def rooms(request, building_name, floor_name):
 
 def displayRoom(request, building_name, floor_name, room):
     response = ''
+    if not request.user.username:
+        raise Http404("Temporary until I figure out redirect but must be logged in to view rooms")
     try:
         b = Building.objects.get(name = building_name)
         f = Floor.objects.get(name = floor_name, building = b)
