@@ -1,1 +1,23 @@
 {% extends 'Website/base.html' %}
+{% block content %}
+<div class="w3-row-padding w3-padding-64 w3-container">
+<hr>
+{% if availableRooms %}
+    <ul>
+    {% for room in availableRooms %}
+    {% if room.name < 100 %}
+        {% if room.name >= 10 %}
+            <li><a href="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.floor.building.name }} 0{{ room.name }}</li>
+        {% else %}
+            <li><a href="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.floor.building.name }} 00{{ room.name }}</li>
+        {% endif %}
+    {% else %}
+        <li><a href="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.floor.building.name }} {{ room.name }}</li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No rooms are available.</p>
+{% endif %}
+{% endblock %}
+</div>

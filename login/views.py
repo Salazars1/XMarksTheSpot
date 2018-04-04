@@ -16,6 +16,7 @@ def createAccount(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
+            request.session['name'] = username
             return redirect('/home/')
     else:
         form = UserCreationForm()
