@@ -32,7 +32,7 @@ class Reservation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     def __str__(self):
         if self.time < 12:
-            return str(self.room) + " " + self.day + " " + str(self.time) + "am"
+            return self.day + " " + str(self.time) + "am " + str(self.room)
         else:
             timeInt = self.time - 12
-        return str(self.room) + " " + self.day + " " + str(timeInt) + "pm"
+        return self.day + " " + str(timeInt) + "pm " + str(self.room)
