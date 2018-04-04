@@ -28,6 +28,7 @@ def rooms(request, building_name, floor_name):
     return render(request, 'Website/Rooms.html', {'floor': floor, 'room_list' : room_list})
 
 def displayRoom(request, building_name, floor_name, room):
+    response = ''
     try:
         b = Building.objects.get(name = building_name)
         f = Floor.objects.get(name = floor_name, building = b)
@@ -47,7 +48,7 @@ def displayRoom(request, building_name, floor_name, room):
                             if time == 12:
                                 time += 12
                         if form.dayToInt(dayReserved) != -1:
-                            reservation_list = Reservation.objects.filter(day = dayReserved)
+                            reservation_list = Reservation.objects.filter(day = dayReserved, room = room)
                             available = True
                             for reservation in reservation_list:
                                 if reservation.time == time:
@@ -56,11 +57,18 @@ def displayRoom(request, building_name, floor_name, room):
                                 r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
                                 r.save()
                                 room.save()
-                                return HttpResponse('success')
+                                form = ReservationForm()
+                                response = 'Room successfully reserved.'
                             else:
-                                return HttpResponse('room taken')
+                                response = 'Room already reserved at that time and day.'
+                        else:
+                            response = 'Invalid day entered.'
+                    else:
+                        response = 'Please enter am or pm.'
+                else:
+                    response = 'Invalid time, please enter value between 1-12.'
         else:
             form = ReservationForm()
     except Room.DoesNotExist:
         raise Http404("Room does not exist")
-    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form})
+    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response})

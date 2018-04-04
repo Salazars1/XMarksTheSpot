@@ -29,9 +29,16 @@ Clone repo on desired file:
 $ git clone https://github.com/nelsona11/XMarksTheSpot.git
 ```
 
-In file directory of XMarksTheSpot after repository has been cloned:
+Go into file directory of XMarksTheSpot and into branch titles PetersBranch.
 
-  First, update settings.py and firstCleanDatabase.py file in XMarksTheSpot file to access your MySQL using your mySQL account information.
+  In terminal:
+```
+$ cd XMarksTheSpot
+$ cd git checkout PetersBranch
+```
+
+
+First, update settings.py and firstCleanDatabase.py file in XMarksTheSpot file to access your MySQL using your mySQL account information.
 
   In terminal:
 ```

@@ -1,0 +1,14 @@
+{% extends 'Website/base.html' %}
+{% block content %}
+<div class="w3-row-padding w3-padding-64 w3-container">
+<ul>
+{% if user %}
+    <p>Username: {{ user.username }}</p>
+    <p>Reservations:</p>
+    {% for r in reservationList %}
+    <li>{{ r }}</li>
+    {% endfor %}
+{% endif %}
+</ul>
+{% endblock %}
+</div>

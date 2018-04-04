@@ -1,5 +1,6 @@
 {% extends 'Website/base.html' %}
 {% block content %}
+<<<<<<< HEAD
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -283,5 +284,18 @@
       </table>
     </div>
   </div>
+=======
+<div class="w3-row-padding w3-padding-64 w3-container">
+<hr>
+<form action="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}" method="post">
+<p>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="OK">
+</p>
+{{ response }}
+</form>
+{% endblock %}
+>>>>>>> bd9f7356b319f5c8840682f564995309affe2308
 </div>
 {% endblock %}
