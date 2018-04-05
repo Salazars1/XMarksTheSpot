@@ -31,12 +31,15 @@ def rooms(request, building_name, floor_name):
 def displayRoom(request, building_name, floor_name, room):
     response = ''
     if not request.user.username:
-        response = 'Must be logged in to view rooms.'
         return redirect('login')
     try:
         b = Building.objects.get(name = building_name)
         f = Floor.objects.get(name = floor_name, building = b)
         room = Room.objects.get(name = room, floor = f)
+        reservation_list = room.reservation_set.all()
+        resListInt = []
+        for res in reservation_list:
+            resListInt.insert(0, [dayToInt(res), res.time])
         if request.method == 'POST':
             form = ReservationForm(request.POST)
             if form.is_valid():
@@ -44,9 +47,9 @@ def displayRoom(request, building_name, floor_name, room):
                 time = form.cleaned_data.get('timeInt')
                 timeType = form.cleaned_data.get('timeType')
                 if time > 0:
-                    if form.timeWithTimeType(timeType=timeType, timeInt=time) != -1:
+                    if form.timeWithTimeType(timeType=timeType) != -1:
                         if timeType == 'pm':
-                            if time != 12:
+                            if time <= 12:
                                 time += 12
                         if timeType == 'am':
                             if time == 12:
@@ -75,4 +78,21 @@ def displayRoom(request, building_name, floor_name, room):
             form = ReservationForm()
     except Room.DoesNotExist:
         raise Http404("Room does not exist")
-    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response})
+    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response, 'resListInt':resListInt})
+
+def dayToInt(res):
+    if res.day == "Monday":
+        return 0
+    elif res.day == "Tuesday":
+        return 1
+    elif res.day == "Wednesday":
+        return 2
+    elif res.day == "Thursday":
+        return 3
+    elif res.day == "Friday":
+        return 4
+    elif res.day == "Saturday":
+        return 5
+    elif res.day == "Sunday":
+        return 6
+    return -1
