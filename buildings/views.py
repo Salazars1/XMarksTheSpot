@@ -31,12 +31,12 @@ def rooms(request, building_name, floor_name):
 def displayRoom(request, building_name, floor_name, room):
     response = ''
     if not request.user.username:
-        response = 'Must be logged in to view rooms.'
         return redirect('login')
     try:
         b = Building.objects.get(name = building_name)
         f = Floor.objects.get(name = floor_name, building = b)
         room = Room.objects.get(name = room, floor = f)
+        reservation_list = room.reservation_set.all()
         if request.method == 'POST':
             form = ReservationForm(request.POST)
             if form.is_valid():
@@ -75,4 +75,4 @@ def displayRoom(request, building_name, floor_name, room):
             form = ReservationForm()
     except Room.DoesNotExist:
         raise Http404("Room does not exist")
-    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response})
+    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response, 'reservation_list':reservation_list})
