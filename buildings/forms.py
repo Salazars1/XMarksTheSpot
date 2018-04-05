@@ -21,7 +21,7 @@ class ReservationForm(forms.Form):
             return 6
         return -1
 
-    def timeWithTimeType(self, timeType, timeInt):
+    def timeWithTimeType(self, timeType):
         if timeType == 'pm':
             return 1
         if timeType == 'am':
