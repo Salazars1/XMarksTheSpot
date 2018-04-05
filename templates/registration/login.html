@@ -8,8 +8,8 @@
     <p>Login to view rooms and create reservations.</p>
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="w3-button w3-blue w3-display-bottomright w3-margin w3-round-xxxlarge">Login</button>
-    <a href="/login/create-account/" class="w3-button w3-blue w3-padding-large w3-large w3-margin-top" >Create an Account</a>
+    <button type="submit" class="w3-button w3-blue w3-padding-large w3-large w3-margin-top">Login</button>
+    <a href="/login/create-account/" class="w3-button w3-blue w3-display-bottomleft w3-margin w3-round-xxxlarge">Create an Account</a>
 </form>
 </div>
 {% endblock %}
