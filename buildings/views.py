@@ -49,7 +49,7 @@ def displayRoom(request, building_name, floor_name, room):
                 if time > 0:
                     if form.timeWithTimeType(timeType=timeType) != -1:
                         if timeType == 'pm':
-                            if time <= 12:
+                            if time < 12:
                                 time += 12
                         if timeType == 'am':
                             if time == 12:
