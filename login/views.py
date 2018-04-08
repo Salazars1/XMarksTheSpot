@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from .forms import CreateUserForm
 
 # Create your views here.
 def index(request):
@@ -9,7 +10,7 @@ def index(request):
 
 def createAccount(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -19,6 +20,6 @@ def createAccount(request):
             request.session['name'] = username
             return redirect('/home/')
     else:
-        form = UserCreationForm()
+        form = CreateUserForm()
     return render(request, 'Website/CreateAccount.html', {'form': form})
 

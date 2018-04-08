@@ -4,6 +4,8 @@
 <ul>
 {% if user %}
     <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
     <p>Reservations:</p>
     {% for r in reservationList %}
     <li>{{ r }}</li>
