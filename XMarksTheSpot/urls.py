@@ -23,7 +23,6 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('buildings/', include('buildings.urls')),
     path('home/', include('home.urls')),
-    path('about/', include('about.urls')),
     path('available/', include('available.urls')),
     path('profile/', include('viewProfile.urls')),
     path('logout/', include('logout.urls')),

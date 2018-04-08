@@ -5,3 +5,7 @@ def index(request):
     reservationList = request.user.reservation_set.order_by('day', 'time', 'room')
     context = {'user' : request.user, 'reservationList':reservationList}
     return render(request, 'Website/profile.html', context)
+
+def editIno(request):
+    context = {}
+    return render(request, 'Website/edit.html', context)
