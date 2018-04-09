@@ -128,7 +128,7 @@ Lastly, one can see a list of the reservations they made by accessing the /profi
 Known Bugs:
 Available now only works for April 2018.
 Learned about on (4/9)
-In available now 7 mod 7 = 0, not 7 so on Saturday every room would always be available.
+In available now 7 mod 7 = 0, not 7. I'm not 100% sure what will happen on Saturday.
 If you try to go to /profile while not logged in the server you get an attribute error
 (these are already addressed and fixed in the next iteration)
 
