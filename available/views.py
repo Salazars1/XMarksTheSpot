@@ -22,7 +22,7 @@ def index(request):
             dayStr = 'Thursday'
         elif today == 6:
             dayStr = 'Friday'
-        elif today == 7:
+        elif today == 0:
             dayStr = 'Saturday'
         else:
             dayStr = -1
