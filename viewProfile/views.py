@@ -29,18 +29,29 @@ def editAccount(request):
                 newFirstName = form.cleaned_data.get('first_name')
             if form.cleaned_data.get('last_name'):
                 newLastName = form.cleaned_data.get('last_name')
+            emailInUse = False
             if form.cleaned_data.get('email'):
-                newEmail = form.cleaned_data.get('email')
-            try:
-                user.username = newUsername
-                user.first_name = newFirstName
-                user.last_name = newLastName
-                user.email = newEmail
-                user.save()
-                return redirect('/profile')
-            except IntegrityError:
-                response = 'Username already in use.'
-                form = UserUpdate()
+                userList = User.objects.all()
+                i = 0
+                while i < len(userList) and not emailInUse:
+                    if userList[i].email == form.cleaned_data.get('email'):
+                        emailInUse = True
+                    i += 1
+                if not emailInUse:
+                    newEmail = form.cleaned_data.get('email')
+            if not emailInUse:
+                try:
+                    user.username = newUsername
+                    user.first_name = newFirstName
+                    user.last_name = newLastName
+                    user.email = newEmail
+                    user.save()
+                    return redirect('/profile')
+                except IntegrityError:
+                    response = 'Username already in use.'
+                    form = UserUpdate()
+            else:
+                response = 'Email already in use.'
     else:
         form = UserUpdate()
     return render(request, 'Website/edit.html', {'form': form, 'response':response})
