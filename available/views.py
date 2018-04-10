@@ -7,7 +7,6 @@ def index(request):
     now = datetime.datetime.now()
     room_list = Room.objects.order_by('floor__building__name', 'name')
     availableRooms = []
-    dayStr = ''
     dayStr = now.strftime("%A")
     for r in room_list:
         available = True
