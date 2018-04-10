@@ -8,24 +8,7 @@ def index(request):
     room_list = Room.objects.order_by('floor__building__name', 'name')
     availableRooms = []
     dayStr = ''
-    if now.month == 4:
-        today = now.day % 7
-        if today == 1:
-            dayStr = 'Sunday'
-        elif today == 2:
-            dayStr = 'Monday'
-        elif today == 3:
-            dayStr = 'Tuesday'
-        elif today == 4:
-            dayStr = 'Wednesday'
-        elif today == 5:
-            dayStr = 'Thursday'
-        elif today == 6:
-            dayStr = 'Friday'
-        elif today == 0:
-            dayStr = 'Saturday'
-        else:
-            dayStr = -1
+    dayStr = now.strftime("%A")
     for r in room_list:
         available = True
         roomReservations = r.reservation_set.all()
