@@ -40,16 +40,19 @@ def editAccount(request):
                 if not emailInUse:
                     newEmail = form.cleaned_data.get('email')
             if not emailInUse:
-                try:
-                    user.username = newUsername
-                    user.first_name = newFirstName
-                    user.last_name = newLastName
-                    user.email = newEmail
-                    user.save()
-                    return redirect('/profile')
-                except IntegrityError:
-                    response = 'Username already in use.'
-                    form = UserUpdate()
+                if '@xavier.edu' in form.cleaned_data.get('email'):
+                    try:
+                        user.username = newUsername
+                        user.first_name = newFirstName
+                        user.last_name = newLastName
+                        user.email = newEmail
+                        user.save()
+                        return redirect('/profile')
+                    except IntegrityError:
+                        response = 'Username already in use.'
+                        form = UserUpdate()
+                else:
+                    response = 'Invalid email entered.'
             else:
                 response = 'Email already in use.'
     else:
