@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DBXMarksTheSpot',
         'USER': 'root',
-        'PASSWORD': 'Ssb09091997',
+        'PASSWORD': '2016x',
     }
 }
 
