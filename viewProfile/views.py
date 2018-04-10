@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserUpdate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from buildings.models import Reservation
 
 # Create your views here.
 def index(request):
@@ -23,38 +24,53 @@ def editAccount(request):
             newFirstName = user.first_name
             newLastName = user.last_name
             newEmail = user.email
+            tempEmail = form.cleaned_data.get('email')
             if form.cleaned_data.get('username'):
                 newUsername = form.cleaned_data.get('username')
             if form.cleaned_data.get('first_name'):
                 newFirstName = form.cleaned_data.get('first_name')
             if form.cleaned_data.get('last_name'):
                 newLastName = form.cleaned_data.get('last_name')
-            emailInUse = False
+            emailUsed = False
             if form.cleaned_data.get('email'):
                 userList = User.objects.all()
                 i = 0
-                while i < len(userList) and not emailInUse:
-                    if userList[i].email == form.cleaned_data.get('email'):
-                        emailInUse = True
+                while i < len(userList) and not emailUsed:
+                    if userList[i].email == tempEmail:
+                        emailUsed = True
                     i += 1
-                if not emailInUse:
-                    newEmail = form.cleaned_data.get('email')
-            if not emailInUse:
-                if '@xavier.edu' in form.cleaned_data.get('email'):
-                    try:
-                        user.username = newUsername
-                        user.first_name = newFirstName
-                        user.last_name = newLastName
-                        user.email = newEmail
-                        user.save()
-                        return redirect('/profile')
-                    except IntegrityError:
-                        response = 'Username already in use.'
-                        form = UserUpdate()
+                if not emailUsed:
+                    if '@xavier.edu' in tempEmail:
+                        newEmail = tempEmail
+                        try:
+                            user.username = newUsername
+                            user.first_name = newFirstName
+                            user.last_name = newLastName
+                            user.email = newEmail
+                            user.save()
+                            return redirect('/profile')
+                        except IntegrityError:
+                            response = 'Username already in use.'
+                    else:
+                        response = 'Invalid email.'
                 else:
-                    response = 'Invalid email entered.'
+                    response = 'Email already in use.'
             else:
-                response = 'Email already in use.'
+                try:
+                    user.username = newUsername
+                    user.first_name = newFirstName
+                    user.last_name = newLastName
+                    user.email = newEmail
+                    user.save()
+                    return redirect('/profile')
+                except IntegrityError:
+                    response = 'Username already in use.'
     else:
         form = UserUpdate()
     return render(request, 'Website/edit.html', {'form': form, 'response':response})
+
+def cancelReservation(request, id):
+    if request.method == 'POST':
+        Reservation.objects.get(pk=id).delete()
+        return redirect('/profile')
+    return render(request, 'Website/confirmation.html', {'reservation':Reservation.objects.get(pk=id)})
