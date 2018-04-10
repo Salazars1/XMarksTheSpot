@@ -65,10 +65,9 @@ def displayRoom(request, building_name, floor_name, room):
                                     r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
                                     r.save()
                                     room.save()
+                                    resListInt.insert(0, [dayToInt(r), r.time])
                                     form = ReservationForm()
                                     response = 'Room successfully reserved.'
-                                    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response, 'resListInt':resListInt, 'userReservations':userReservations})
-
                                 else:
                                     response = 'Room already reserved at that time and day.'
                             else:
