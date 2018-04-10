@@ -126,11 +126,11 @@ This can be checked by making a reservation for the current hour and seeing that
 Lastly, one can see a list of the reservations they made by accessing the /profile page if they're signed in.
 
 Known Bugs:
-Available now only works for April 2018. Unless the 1st day of the month is a Sunday, other months will have the days of the week misaligned with the dates.
+Available now only works for April 2018. Unless the 1st day of the month is a Sunday, other months will have the days of the week misaligned with the dates. (Fixed in master branch.)
 Learned about on (4/9)
 In available now 7 mod 7 = 0, not 7. I'm not 100% sure what will happen on Saturday.
 If you try to go to /profile while not logged in the server you get an attribute error
-(these are already addressed and fixed in the next iteration)
+(these are already addressed and fixed in the master branch)
 
 ## Built With
 
