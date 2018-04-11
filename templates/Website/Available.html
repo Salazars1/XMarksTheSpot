@@ -8,11 +8,14 @@
     {% if room.name < 100 %}
         {% if room.name >= 10 %}
             <li><a href="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.floor.building.name }} 0{{ room.name }}</li>
+            <br>
         {% else %}
             <li><a href="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.floor.building.name }} 00{{ room.name }}</li>
+            <br>
         {% endif %}
     {% else %}
         <li><a href="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}">{{ room.floor.building.name }} {{ room.name }}</li>
+        <br>
     {% endif %}
     {% endfor %}
     </ul>

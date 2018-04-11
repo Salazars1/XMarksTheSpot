@@ -6,6 +6,7 @@
     <ul>
     {% for building in building_list %}
         <li><a href="/buildings/{{ building.name }}/">{{ building.name }}</a></li>
+        <br>
     {% endfor %}
     </ul>
 {% else %}
