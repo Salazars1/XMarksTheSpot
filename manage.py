@@ -44,9 +44,13 @@ def periodic_event( ): #run the periodic event
 #@source https://stackoverflow.com/questions/40118869/python-how-to-check-if-time-is-midnight-and-not-display-time-if-true
 def checkIfMidnight():
     now = datetime.now()
-    seconds_since_midnight = (now - now.replace(hour=0, minute=0, second=0, microsecond=0)).total_seconds()
-    #print (seconds_since_midnight) # print seconds since it was midnight
-    return seconds_since_midnight == 0
+    midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    seconds_since_midnight = (now - midnight).total_seconds()
+    print (seconds_since_midnight) # print seconds since it was midnight
+    if (seconds_since_midnight < 2):
+        return True
+    else:
+        return False
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "XMarksTheSpot.settings")
