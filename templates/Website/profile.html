@@ -4,12 +4,17 @@
 <ul>
 {% if user %}
     <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
     <p>Reservations:</p>
     {% for r in reservationList %}
-    <li>{{ r }}</li>
+        <li>{{ r }}<a href="/profile/cancel-reservation/{{ r.id }}"<button class="w3-button w3-small w3-circle w3-red">X</button></a></li>
+        <br>
     {% endfor %}
 {% endif %}
+<p>{{ response }}</p>
 </ul>
+    <a href="/profile/edit-account" class="w3-button w3-blue w3-padding-large w3-large w3-margin-top">Edit Account</a>
     <a href="/logout" class="w3-button w3-blue w3-padding-large w3-large w3-margin-top">Sign Out</a>
 {% endblock %}
 </div>

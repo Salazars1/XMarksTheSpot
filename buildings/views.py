@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import Building, Floor, Room, Reservation
 from django.http import Http404
 from .forms import ReservationForm
@@ -38,47 +37,52 @@ def displayRoom(request, building_name, floor_name, room):
         room = Room.objects.get(name = room, floor = f)
         reservation_list = room.reservation_set.all()
         resListInt = []
+        userReservations = len(request.user.reservation_set.all())
         for res in reservation_list:
             resListInt.insert(0, [dayToInt(res), res.time])
         if request.method == 'POST':
             form = ReservationForm(request.POST)
-            if form.is_valid():
-                dayReserved = form.cleaned_data.get('day')
-                time = form.cleaned_data.get('timeInt')
-                timeType = form.cleaned_data.get('timeType')
-                if time > 0:
-                    if form.timeWithTimeType(timeType=timeType) != -1:
-                        if timeType == 'pm':
-                            if time < 12:
-                                time += 12
-                        if timeType == 'am':
-                            if time == 12:
-                                time += 12
-                        if form.dayToInt(dayReserved) != -1:
-                            reservation_list = Reservation.objects.filter(day = dayReserved, room = room)
-                            available = True
-                            for reservation in reservation_list:
-                                if reservation.time == time:
-                                    available = False
-                            if available:
-                                r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
-                                r.save()
-                                room.save()
-                                form = ReservationForm()
-                                response = 'Room successfully reserved.'
+            if userReservations < 3:
+                if form.is_valid():
+                    dayReserved = form.cleaned_data.get('day')
+                    time = form.cleaned_data.get('timeInt')
+                    timeType = form.cleaned_data.get('timeType')
+                    if time > 0:
+                        if form.timeWithTimeType(timeType=timeType) != -1:
+                            if timeType == 'pm':
+                                if time < 12:
+                                    time += 12
+                            if timeType == 'am':
+                                if time == 12:
+                                    time += 12
+                            if form.dayToInt(dayReserved) != -1:
+                                reservation_list = Reservation.objects.filter(day = dayReserved, room = room)
+                                available = True
+                                for reservation in reservation_list:
+                                    if reservation.time == time:
+                                        available = False
+                                if available:
+                                    r = Reservation(user = request.user, room = room, time = time, day=dayReserved)
+                                    r.save()
+                                    room.save()
+                                    resListInt.insert(0, [dayToInt(r), r.time])
+                                    form = ReservationForm()
+                                    response = 'Room successfully reserved.'
+                                else:
+                                    response = 'Room already reserved at that time and day.'
                             else:
-                                response = 'Room already reserved at that time and day.'
+                                response = 'Invalid day entered.'
                         else:
-                            response = 'Invalid day entered.'
+                            response = 'Please enter am or pm.'
                     else:
-                        response = 'Please enter am or pm.'
-                else:
-                    response = 'Invalid time, please enter value between 1-12.'
+                        response = 'Invalid time, please enter value between 1-12.'
+            else:
+                response = 'Already reached the max amount of reservations.'
         else:
             form = ReservationForm()
     except Room.DoesNotExist:
         raise Http404("Room does not exist")
-    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response, 'resListInt':resListInt})
+    return render(request, 'Website/displayRoom.html', {'room':room, 'form':form, 'response':response, 'resListInt':resListInt, 'userReservations':userReservations})
 
 def dayToInt(res):
     if res.day == "Monday":

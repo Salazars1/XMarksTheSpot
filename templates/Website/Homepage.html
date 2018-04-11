@@ -9,9 +9,8 @@
 {% block content %}
 <!-- Header -->
 <header class="w3-container w3-blue w3-center" style="padding:128px 16px">
-  <h1 class="w3-margin w3-jumbo">X Marks the Spot</h1>
-  <p class="w3-xlarge">Iteration 2</p>
-  <a href="/login/create-account/" class="w3-button w3-white w3-padding-large w3-large w3-margin-top" >Create an Account</a>
+    {%load static%}
+    <img src="{% static "images/logo.jpeg" %}" alt= "My LOGO" >
 </header>
 
 <!-- About Container -->
@@ -21,7 +20,7 @@
       <h1>Reserve a Room on Campus</h1>
       <h5 class="w3-padding-32">Look for a room, find a room, reserve the room.</h5>
 
-      <p class="w3-text-grey">There are 2 ways to use this website. The first is to find what rooms are available right now and the second is to reserve a room for the future. In order to do either of these you first have to create an account by using the "Create Account" button. Then, in order to find an available room right now,
+      <p class="w3-text-grey">There are 2 ways to use this website. The first is to find what rooms are available right now and the second is to reserve a room for the future. In order to do either of these you first have to create an account by using the "Create Account" button on the "Login" page. Then, in order to find an available room right now,
        go to the "Available Now" tab and you will be shown what rooms are available right now and you can reserve them right from that tab. In order to reserve a room for the future, click on the "Buildings" tab. From there you will be prompted to choose a building, then a floor, and then what ever room you would like to reserve
        and the date and time that you would like to reserve it for.</p>
     </div>
