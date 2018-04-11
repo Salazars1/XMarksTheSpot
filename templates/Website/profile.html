@@ -8,7 +8,8 @@
     <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
     <p>Reservations:</p>
     {% for r in reservationList %}
-        <li><a href="/profile/cancel-reservation/{{ r.id }}">{{ r }}</a></li>
+        <li>{{ r }}<a href="/profile/cancel-reservation/{{ r.id }}"<button class="w3-button w3-small w3-circle w3-red">X</button></a></li>
+        <br>
     {% endfor %}
 {% endif %}
 <p>{{ response }}</p>
