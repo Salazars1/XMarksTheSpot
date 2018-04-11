@@ -7,20 +7,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<div class="w3-row-padding w3-padding-64 container-fluid">
+<div class="w3-row-padding w3-padding-64 w3-container-fluid">
   <div class="row">
-    <div class="col-lg-3 w3-row-padding w3-container">
+    <div class="col-lg-4 w3-row-padding w3-container">
       <hr>
-      <form action="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}" method="post">
+      <form class="w3-container w3-card-2" action="/buildings/{{ room.floor.building.name }}/{{ room.floor.name }}/{{ room.name }}" method="post">
       <p>
           {% csrf_token %}
           {{ form.as_p }}
-          <input type="submit" value="OK">
+          <input class= "w3-button w3-blue" type="submit" value="OK">
       </p>
       {{ response }}
       </form>
     </div>
-    <div class="col-lg-9 w3-row-padding w3-container">
+    <div class="col-lg-8 w3-row-padding w3-container">
       <table border="1" style="width:100%">
         <caption>Weekly Schedule</caption>
         <script>
