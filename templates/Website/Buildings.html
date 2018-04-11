@@ -6,6 +6,7 @@
     <ul>
     {% for building in building_list %}
         <li><a href="/buildings/{{ building.name }}/" <button class="w3-button w3-blue w3-large">{{ building.name }}</button></a></li>
+        <br>
     {% endfor %}
     </ul>
 {% else %}
