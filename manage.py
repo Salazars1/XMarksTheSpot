@@ -46,7 +46,7 @@ def checkIfMidnight():
     now = datetime.now()
     midnight = now.replace(hour=0, minute=0, second=0, microsecond=0)
     seconds_since_midnight = (now - midnight).total_seconds()
-    print (seconds_since_midnight) # print seconds since it was midnight
+    #print (seconds_since_midnight) # print seconds since it was midnight
     if (seconds_since_midnight < 2):
         return True
     else:
