@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DBXMarksTheSpot',
-        'USER': 'root',
-        'PASSWORD': '2016x',
+        'USER': 'xmarksthespot',
+        'PASSWORD': 'xmarksthespot',
     }
 }
 
@@ -107,11 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'xmarksthespot.xavier@gmail.com'
-EMAIL_HOST_PASSWORD = 'XMarksTheSpot123987456'
-EMAIL_PORT = 587
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -131,6 +126,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL='/media/'
-MEDIA_ROOT = '\templates\Website/media'
 LOGIN_REDIRECT_URL = '/home/'
