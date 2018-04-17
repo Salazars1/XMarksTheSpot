@@ -3,6 +3,7 @@ from .models import Building, Floor, Room, Reservation
 from django.http import Http404
 from .forms import ReservationForm
 from django.shortcuts import redirect
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -57,7 +58,10 @@ def displayRoom(request, building_name, floor_name, room):
                                     time += 12
                             if form.dayToInt(dayReserved) != -1:
                                 reservation_list = Reservation.objects.filter(day = dayReserved, room = room)
+                                user = User.objects.get(username=request.user.username)
                                 available = True
+                                if len(user.reservation_set.filter(day=dayReserved, time=time)) > 0:
+                                    available = False
                                 for reservation in reservation_list:
                                     if reservation.time == time:
                                         available = False
@@ -69,7 +73,7 @@ def displayRoom(request, building_name, floor_name, room):
                                     form = ReservationForm()
                                     response = 'Room successfully reserved.'
                                 else:
-                                    response = 'Room already reserved at that time and day.'
+                                    response = 'Room already reserved or you have a reservation at that time and day.'
                             else:
                                 response = 'Invalid day entered.'
                         else:
