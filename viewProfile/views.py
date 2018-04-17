@@ -81,12 +81,14 @@ def checkIn(request, id):
     reservation = Reservation.objects.get(pk=id)
     if request.method == 'POST':
         reservation.checkedIn = True
+        reservation.save()
         return redirect('/profile')
-    now = datetime.datetime.now()
-    time = reservation.time
-    if time == 24:
-        time = 0
-    if reservation.day == now.strftime("%A"):
-        if (reservation.time == now.hour and now.minute <= 10) or (reservation.time == now.hour - 1 and now.minute >= 50):
-            return render(request, 'Website/checkIn.html', {'reservation': reservation})
-    return render(request, 'Website/checkInFail.html', {})
+    else:
+        now = datetime.datetime.now()
+        time = reservation.time
+        if time == 24:
+            time = 0
+        if reservation.day == now.strftime("%A"):
+            if (time == now.hour and now.minute <= 10) or (time - 1 == now.hour and now.minute >= 50):
+                return render(request, 'Website/checkIn.html', {'reservation': reservation})
+        return render(request, 'Website/checkInFail.html', {})
