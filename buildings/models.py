@@ -30,14 +30,28 @@ class Reservation(models.Model):
     day = models.CharField(max_length=9)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    checkedIn = models.BooleanField(default=False)
     def __str__(self):
         timeInt = self.time
         if self.time < 12 or self.time == 24:
             if self.time == 24:
-                return self.day + " " + str(12) + "am " + str(self.room)
-            return self.day + " " + str(self.time) + "am " + str(self.room)
+                returnStr = self.day + " " + str(12) + "am " + str(self.room)
+                if not self.checkedIn:
+                    return returnStr
+                else:
+                    return returnStr + " Checked in"
+            if not self.checkedIn:
+                return self.day + " " + str(self.time) + "am " + str(self.room)
+            else:
+                return self.day + " " + str(self.time) + "am " + str(self.room) + " Checked in"
         elif self.time == 12:
-            return self.day + " " + str(self.time) + "pm " + str(self.room)
+            if not self.checkedIn:
+                return self.day + " " + str(self.time) + "pm " + str(self.room)
+            else:
+                return self.day + " " + str(self.time) + "pm " + str(self.room) + " Checked in"
         else:
             timeInt = self.time - 12
-        return self.day + " " + str(timeInt) + "pm " + str(self.room)
+        if not self.checkedIn:
+            return self.day + " " + str(timeInt) + "pm " + str(self.room)
+        else:
+            return self.day + " " + str(timeInt) + "pm " + str(self.room) + " Checked in"

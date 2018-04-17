@@ -3,6 +3,8 @@ from .forms import UserUpdate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from buildings.models import Reservation
+import datetime
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -74,3 +76,17 @@ def cancelReservation(request, id):
         Reservation.objects.get(pk=id).delete()
         return redirect('/profile')
     return render(request, 'Website/confirmation.html', {'reservation':Reservation.objects.get(pk=id)})
+
+def checkIn(request, id):
+    reservation = Reservation.objects.get(pk=id)
+    if request.method == 'POST':
+        reservation.checkedIn = True
+        return redirect('/profile')
+    now = datetime.datetime.now()
+    time = reservation.time
+    if time == 24:
+        time = 0
+    if reservation.day == now.strftime("%A"):
+        if (reservation.time == now.hour and now.minute <= 10) or (reservation.time == now.hour - 1 and now.minute >= 50):
+            return render(request, 'Website/checkIn.html', {'reservation': reservation})
+    return render(request, 'Website/checkInFail.html', {})
