@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DBXMarksTheSpot',
-        'USER': 'root',
-        'PASSWORD': '2016x',
+        'USER': 'xmarksthespot',
+        'PASSWORD': 'xmarksthespot',
     }
 }
 
