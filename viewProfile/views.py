@@ -88,7 +88,7 @@ def checkIn(request, id):
         time = reservation.time
         if time == 24:
             time = 0
-        if reservation.day == now.strftime("%A"):
+        if reservation.day == now.strftime("%A") and not reservation.checkedIn:
             if (time == now.hour and now.minute <= 10) or (time - 1 == now.hour and now.minute >= 50):
                 return render(request, 'Website/checkIn.html', {'reservation': reservation})
-        return render(request, 'Website/checkInFail.html', {})
+        return render(request, 'Website/checkInFail.html', {'r': reservation})
