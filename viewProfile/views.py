@@ -90,6 +90,6 @@ def checkIn(request, id):
             time = 0
         #This would limit the time you can check in but if we do a script that deletes them hourly then this would just be redundant.
         if reservation.day == now.strftime("%A") and not reservation.checkedIn:
-            if time - 1 == now.hour and now.minute >= 50 or time == now.hour:
+            if (time - 1 == now.hour and now.minute >= 50) or time == now.hour:
                 return render(request, 'Website/checkIn.html', {'reservation': reservation})
         return render(request, 'Website/checkInFail.html', {'r': reservation})
